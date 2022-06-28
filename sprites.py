@@ -29,6 +29,10 @@ class Player(pg.sprite.Sprite):
 		self.rect.x = self.x * TILE_SIZE
 		self.rect.y = self.y * TILE_SIZE
 
+class Enemy(pg.sprite.Sprite):
+	def __init__(self, game, x, y):
+		self.gr
+
 class Wall(pg.sprite.Sprite):
 	def __init__(self, game, x, y):
 		self.groups = game.all_sprites, game.walls

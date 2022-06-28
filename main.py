@@ -1,4 +1,6 @@
 # Matei Cananau 2022
+from turtle import screensize
+import math
 import pygame as pg
 import sys
 from settings import *
@@ -18,7 +20,7 @@ class Game:
 
 	def new(self):
 		self.all_sprites = pg.sprite.Group()
-		self.player = Player(self, 0, 0)
+		self.player = Player(self, math.floor(G_WIDTH/2), G_HEIGHT-3)
 	
 	def run(self):
 		self.playing = True

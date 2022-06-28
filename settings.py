@@ -1,4 +1,4 @@
-WIDTH = 1024
+WIDTH = 960
 HEIGHT = 768
 FPS = 60
 TITLE = 'Mytholos'

@@ -1,13 +1,9 @@
-# Matei Cananau 2022
-import enum
-from turtle import screensize
-import math
+import random
 import pygame as pg
 import sys
 from os import path
 from settings import *
 from sprites import *
-# from sprites import *
 
 class Game:
 	def __init__(self):
@@ -28,12 +24,16 @@ class Game:
 	def new(self):
 		self.all_sprites = pg.sprite.Group()
 		self.walls = pg.sprite.Group()
+		self.enemies = pg.sprite.Group()
 		for row, tiles in enumerate(self.map_data):
 			for col, tile in enumerate(tiles):
 				if tile == '1':
 					Wall(self, col, row)
 				if tile == 'p':
-					self.player = Player(self, math.floor(G_WIDTH/2), G_HEIGHT-3)
+					self.player = Player(self, col, row)
+					# self.player = Player(self, math.floor(G_WIDTH/2), G_HEIGHT-3)
+				if tile == 'e':
+					self.enemy = Enemy(self, col, row)
 					
 	
 	def run(self):
@@ -78,7 +78,15 @@ class Game:
 					self.player.move(dy=-1)
 				if event.key == pg.K_DOWN:
 					self.player.move(dy=1)
-			
+				rand = random.randint(1, 4)
+				if rand == 1:
+					self.enemy.move(dx=-1)
+				if rand == 2:
+					self.enemy.move(dx=1)
+				if rand == 3:
+					self.enemy.move(dy=-1)
+				if rand == 4:
+					self.enemy.move(dy=1)
 	
 	def show_start_screen(self):
 		pass

@@ -2,6 +2,7 @@
 import pygame as pg
 import sys
 from settings import *
+from sprites import *
 # from sprites import *
 
 class Game:
@@ -17,6 +18,7 @@ class Game:
 
 	def new(self):
 		self.all_sprites = pg.sprite.Group()
+		self.player = Player(self, 0, 0)
 	
 	def run(self):
 		self.playing = True

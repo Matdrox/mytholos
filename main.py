@@ -20,7 +20,10 @@ class Game:
 
 	def new(self):
 		self.all_sprites = pg.sprite.Group()
+		self.walls = pg.sprite.Group()
 		self.player = Player(self, math.floor(G_WIDTH/2), G_HEIGHT-3)
+		for x in range (10, 20):
+			Wall(self, x, 5)
 	
 	def run(self):
 		self.playing = True
@@ -56,6 +59,15 @@ class Game:
 			if event.type == pg.KEYDOWN:
 				if event.key == pg.K_ESCAPE:
 					self.quit()
+				if event.key == pg.K_LEFT:
+					self.player.move(dx=-1)
+				if event.key == pg.K_RIGHT:
+					self.player.move(dx=1)
+				if event.key == pg.K_UP:
+					self.player.move(dy=-1)
+				if event.key == pg.K_DOWN:
+					self.player.move(dy=1)
+			
 	
 	def show_start_screen(self):
 		pass

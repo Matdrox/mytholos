@@ -14,11 +14,11 @@ class Player(pg.sprite.Sprite):
         self.y = y
 
     def move(self, dx=0, dy=0):
-        if not self.collide_walls(dx, dy):
+        if not self.collision(dx, dy):
             self.x += dx
             self.y += dy
 
-    def collide_walls(self, dx=0, dy=0):
+    def collision(self, dx=0, dy=0):
         for wall in self.game.walls:
             if wall.x == self.x + dx and wall.y == self.y + dy:
                 return True
@@ -43,24 +43,24 @@ class Enemy(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
-        self.rect.x = x * TILE_SIZE
-        self.rect.y = y * TILE_SIZE
         self.health = 3
         self.fighting = False
 
     def move(self, dx=0, dy=0):
-        if not self.collide_walls(dx, dy) and not self.fighting:
+        if not self.collision(dx, dy) and not self.fighting:
             self.x += dx
             self.y += dy
 
-    def collide_walls(self, dx=0, dy=0):
+    def collision(self, dx=0, dy=0):
         for wall in self.game.walls:
             if wall.x == self.x + dx and wall.y == self.y + dy:
                 return True
         if self.game.player.x == self.x + dx and self.game.player.y == self.y + dy:
-            self.fighting = True
-        # self.fighting = False
             return True
+        if (self.game.player.x == self.x - 1 or self.game.player.x == self.x or self.game.player.x == self.x + 1) and (self.game.player.y == self.y - 1 or self.game.player.y == self.y or self.game.player.y == self.y + 1):
+            self.fighting = True
+        else:
+            self.fighting = False
         return False
 
     def update(self):

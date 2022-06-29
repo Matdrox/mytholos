@@ -78,16 +78,17 @@ class Game:
                     self.player.move(dy=-1)
                 if event.key == pg.K_DOWN:
                     self.player.move(dy=1)
-                if not self.enemy.fighting:
-                    rand = random.randint(1, 4)
-                    if rand == 1:
-                        self.enemy.move(dx=-1)
-                    if rand == 2:
-                        self.enemy.move(dx=1)
-                    if rand == 3:
-                        self.enemy.move(dy=-1)
-                    if rand == 4:
-                        self.enemy.move(dy=1)
+                rand = random.randint(1, 4)
+                if rand == 1:
+                    self.enemy.move(dx=-1)
+                if rand == 2:
+                    self.enemy.move(dx=1)
+                if rand == 3:
+                    self.enemy.move(dy=-1)
+                if rand == 4:
+                    self.enemy.move(dy=1)
+
+                print(self.player.x)
 
     def show_start_screen(self):
         pass

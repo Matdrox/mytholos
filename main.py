@@ -4,6 +4,7 @@ import sys
 from os import path
 from settings import *
 from sprites import *
+from camera import *
 
 
 class Game:
@@ -32,9 +33,9 @@ class Game:
                     Wall(self, col, row)
                 if tile == 'p':
                     self.player = Player(self, col, row)
-                    # self.player = Player(self, math.floor(G_WIDTH/2), G_HEIGHT-3)
                 if tile == 'e':
                     self.enemy = Enemy(self, col, row)
+        self.camera = Camera(WIDTH, HEIGHT)
 
     def run(self):
         self.playing = True
@@ -50,6 +51,7 @@ class Game:
 
     def update(self):
         self.all_sprites.update()
+        self.camera.update(self.player)
 
     def draw_grid(self):
         for x in range(0, WIDTH, TILE_SIZE):
@@ -60,7 +62,8 @@ class Game:
     def draw(self):
         self.screen.fill(BG_COLOR)
         self.draw_grid()
-        self.all_sprites.draw(self.screen)
+        for sprite in self.all_sprites:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.flip()
 
     def events(self):

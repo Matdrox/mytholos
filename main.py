@@ -71,6 +71,7 @@ class Game:
             if event.type == pg.QUIT:
                 self.quit()
             if event.type == pg.KEYDOWN:
+                temp = self.camera.y
                 if event.key == pg.K_ESCAPE:
                     self.quit()
                 if event.key == pg.K_LEFT:
@@ -78,7 +79,9 @@ class Game:
                 if event.key == pg.K_RIGHT:
                     self.player.move(dx=1)
                 if event.key == pg.K_UP:
+                    print('Temp: ' + str(temp))
                     self.player.move(dy=-1)
+                    print('Camera Y: ' + str(self.camera.y))
                 if event.key == pg.K_DOWN:
                     self.player.move(dy=1)
                 rand = random.randint(1, 4)

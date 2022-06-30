@@ -12,7 +12,7 @@ class Camera:
         return entity.rect.move(self.camera.topleft)
 
     def update(self, target):
-        y = -target.rect.y + int(HEIGHT)/2+128
+        y = -target.rect.y + int(HEIGHT/2)+128
         y = min(0, y)
         # y = max(-(self.height - HEIGHT), y)
         self.camera = pg.Rect(0, y, self.width, self.height)

@@ -91,8 +91,6 @@ class Game:
                 if rand == 4:
                     self.enemy.move(dy=1)
 
-                print(self.player.x)
-
     def show_start_screen(self):
         pass
 

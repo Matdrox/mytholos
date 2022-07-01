@@ -14,6 +14,7 @@ class Camera:
 
     def update(self, target):
         self.y = -target.rect.y + int(HEIGHT/2)+128
+        # self.y = -target.rect.y + int(HEIGHT/2)+128
         # print(y/32+12)
         # y = min(0, y)
         self.y = min(0, self.y)

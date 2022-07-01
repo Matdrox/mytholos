@@ -16,5 +16,7 @@ class Camera:
         self.y = -target.rect.y + int(HEIGHT/2)+128
         # print(y/32+12)
         # y = min(0, y)
-        # y = max(-(self.height - HEIGHT), y)
+        self.y = min(0, self.y)
+        print(self.y)
+        # self.y = max(self.y, self.height)
         self.camera = pg.Rect(0, self.y, self.width, self.height)

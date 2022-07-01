@@ -11,10 +11,11 @@ class Game:
     def __init__(self):
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        pg.display.set_caption(TITLE)
+        # pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
         self.load_data()
+        self.score = -500
 
     def load_data(self):
         game_folder = path.dirname(__file__)
@@ -60,8 +61,8 @@ class Game:
             pg.draw.line(self.screen, (150, 150, 150), (0, y), (WIDTH, y))
 
     def draw(self):
-        self.screen.fill(BG_COLOR)
-        self.draw_grid()
+        self.screen.fill((255, 212, 162))
+        # self.draw_grid()
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.flip()
@@ -71,7 +72,6 @@ class Game:
             if event.type == pg.QUIT:
                 self.quit()
             if event.type == pg.KEYDOWN:
-                temp = self.camera.y
                 if event.key == pg.K_ESCAPE:
                     self.quit()
                 if event.key == pg.K_LEFT:
@@ -79,9 +79,10 @@ class Game:
                 if event.key == pg.K_RIGHT:
                     self.player.move(dx=1)
                 if event.key == pg.K_UP:
-                    print('Temp: ' + str(temp))
                     self.player.move(dy=-1)
-                    print('Camera Y: ' + str(self.camera.y))
+                    if self.camera.y > self.score:
+                        self.score = self.camera.y
+                        pg.display.set_caption(str(self.camera.y))
                 if event.key == pg.K_DOWN:
                     self.player.move(dy=1)
                 rand = random.randint(1, 4)

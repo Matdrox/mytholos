@@ -26,6 +26,7 @@ class Game:
                 self.map_data.append(line)
         self.player_img = pg.image.load(
             path.join(img_folder, PLAYER_IMG)).convert_alpha()
+        # CHANGE ORIGIN
 
     def new(self):
         self.all_sprites = pg.sprite.Group()
